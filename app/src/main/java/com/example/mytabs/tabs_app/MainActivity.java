@@ -25,9 +25,10 @@ import dad.model.VoucherContract;
 
 public class MainActivity extends ActionBarActivity {
 
-    public VoucherContract myDB;
+    VoucherContract myDB;
 
-    public static ArrayList<String> openMessages = new ArrayList<String>();
+    public static ArrayList<String> openMessages = new ArrayList<>();
+    public static ArrayList<Integer> voucherID = new ArrayList<>();
     private static final String TAG = "junk";
 
     // TODO(Katharina): Store this to savedInstanceState.
@@ -69,8 +70,10 @@ public class MainActivity extends ActionBarActivity {
             do {
                 String company = cursor.getString(5);
                 int dismissed = cursor.getInt(4);
+                Integer id = (Integer) cursor.getInt(0);
                 if(counter < 5 && dismissed == 0) {
                     openMessages.add(company);
+                    voucherID.add(id);
                     counter++;
                 }
             } while(cursor.moveToNext());
@@ -159,6 +162,9 @@ public class MainActivity extends ActionBarActivity {
 
         // TODO(Julian): Delete item from data base.
         adapter.remove(voucherToRemove);
+        //System.out.println(v.);
+        //System.out.println(voucherID.get(v.getId()));
+        //myDB.dismissVoucher(voucherID.get(v.getId()));
     }
 
     public void registerDeveloperOnClickListener(View v) {
