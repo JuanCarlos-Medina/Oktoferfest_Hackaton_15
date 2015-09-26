@@ -15,12 +15,15 @@
         android:layout_height="wrap_content"
         android:minHeight="?android:attr/listPreferredItemHeight"
         android:gravity="center_vertical"
+        android:clickable="true"
         android:id="@+id/list_item_openmessages_textview" />
 
     <Button
+        android:id="@+id/message_sendMessage"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
-        android:text="Send away" />
+        android:text="Send away"
+        android:onClick="sendMessageOnClickHandler" />
 
 </LinearLayout>

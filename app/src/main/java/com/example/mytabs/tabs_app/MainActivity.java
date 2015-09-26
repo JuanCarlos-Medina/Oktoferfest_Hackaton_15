@@ -1,5 +1,6 @@
 package com.example.mytabs.tabs_app;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBar.Tab;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -61,6 +63,21 @@ public class MainActivity extends ActionBarActivity {
 //            get the saved selected tab's index and set that tab as selected
             actionBar.setSelectedNavigationItem(savedInstanceState.getInt("tabIndex", 0));
         }
+    }
+
+    public void sendMessageOnClickHandler(View v) {
+        String voucherToRemove = (String)v.getTag();
+
+        Context context = getApplicationContext();
+        CharSequence text = "Hello toast!";
+        int duration = Toast.LENGTH_SHORT;
+
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
+
+        ListView openMessagesListView = (ListView) findViewById(R.id.listview_openmessages);
+        MessageListAdapter adapter = (MessageListAdapter) openMessagesListView.getAdapter();
+        adapter.remove(voucherToRemove);
     }
 
 }
