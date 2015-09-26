@@ -84,7 +84,7 @@ public class MainActivity extends ActionBarActivity {
         myDB.insertRow("TEST",10.0,"Euro","Yahoo","18 May","18 May", 1, "CSJWF", 0);
         myDB.insertRow("TEST",10.0,"Euro","Twitter","18 May","18 May", 1, "CSJWF", 1);
         myDB.insertRow("TEST",10.0,"Euro","Youtube","18 May","18 May", 1, "CSJWF", 0);
-        myDB.insertRow("TEST",10.0,"Euro","9Gag","18 May","18 May", 1, "CSJWF", 0);
+        myDB.insertRow("TEST", 10.0, "Euro", "9Gag", "18 May", "18 May", 1, "CSJWF", 0);
     }
 
     private void resetDB() {
@@ -139,7 +139,8 @@ public class MainActivity extends ActionBarActivity {
             actionBar.setSelectedNavigationItem(savedInstanceState.getInt("tabIndex", 0));
         }
         if (beingShop) {
-            actionBar.selectTab(tab_two);
+            // TODO(Katharina): Change this as soon as we know how to refresh the fragment.
+            actionBar.selectTab(tab_one);
         }
     }
 
@@ -163,5 +164,14 @@ public class MainActivity extends ActionBarActivity {
     public void registerDeveloperOnClickListener(View v) {
         Intent intent = new Intent((Activity) v.getContext(), RegisterShopActivity.class);
         v.getContext().startActivity(intent);
+    }
+
+    public void releaseVoucherOnClickListener(View v) {
+        Context context = getApplicationContext();
+        CharSequence text = "Sent to customers!";
+        int duration = Toast.LENGTH_SHORT;
+
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
     }
 }

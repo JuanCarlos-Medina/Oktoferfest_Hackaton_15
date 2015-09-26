@@ -18,7 +18,7 @@ public class SendVouchersFragment extends Fragment{
         View view;
         if (MainActivity.beingShop) {
             // TODO(Katharina): Substitute this by a good layout.
-            view = inflater.inflate(R.layout.fragment_one, container, false);
+            view = inflater.inflate(R.layout.fragment_sendvouchers, container, false);
         } else {
             view = inflater.inflate(R.layout.fragment_two, container, false);
         }
