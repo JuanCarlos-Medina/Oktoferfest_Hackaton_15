@@ -25,14 +25,23 @@ public class MyVouchersFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        String[] openMessages = new String[] { "Android", "iPhone", "WindowsMobile",
-                "Blackberry", "WebOS", "Ubuntu", "Windows7", "Max OS X",
-                "Linux", "OS/2", "Ubuntu", "Windows7", "Max OS X", "Linux",
-                "OS/2", "Ubuntu", "Windows7", "Max OS X", "Linux", "OS/2",
-                "Android", "iPhone", "WindowsMobile" };
+        View rootView = inflater.inflate(R.layout.fragment_one, container, false);
+
+        String[] openMessages = new String[] { "Voucher 1", "Voucher 2", "Voucher 3",
+                "Voucher 4", "Voucher 5"};
 
         List<String> openMessageList = new ArrayList<>(Arrays.asList(openMessages));
 
-        return inflater.inflate(R.layout.fragment_one, container, false);
+        ArrayAdapter <String> openMessagesAdapter =
+                new ArrayAdapter<>(
+                        getActivity(),
+                        R.layout.list_item_openmessages, // ID der XML-Layout Datei
+                        R.id.list_item_openmessages_textview,
+                        openMessages);
+
+        ListView openMessagesListView = (ListView) rootView.findViewById(R.id.listview_openmessages);
+        openMessagesListView.setAdapter(openMessagesAdapter);
+
+        return rootView;
     }
 }
