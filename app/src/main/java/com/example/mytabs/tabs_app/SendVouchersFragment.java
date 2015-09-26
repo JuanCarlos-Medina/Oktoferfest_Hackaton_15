@@ -15,7 +15,13 @@ public class SendVouchersFragment extends Fragment{
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragament_two, container, false);
+        View view;
+        if (MainActivity.beingShop) {
+            // TODO(Katharina): Substitute this by a good layout.
+            view = inflater.inflate(R.layout.fragment_one, container, false);
+        } else {
+            view = inflater.inflate(R.layout.fragament_two, container, false);
+        }
 
         return view;
     }

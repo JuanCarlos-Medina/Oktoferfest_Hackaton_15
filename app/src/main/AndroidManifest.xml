@@ -18,7 +18,15 @@
         </activity>
         <activity
             android:name=".VoucherActivity"
-            android:label="@string/title_activity_voucher">
+            android:label="@string/title_activity_voucher" >
+        </activity>
+        <activity
+            android:name=".RegisterShopActivity"
+            android:label="@string/title_activity_register_shop" >
+        </activity>
+        <activity
+            android:name=".EnterCodeActivity"
+            android:label="@string/title_activity_enter_code" >
         </activity>
     </application>
 

@@ -19,6 +19,7 @@
         android:layout_below="@+id/textViewNoSending"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="I am a shop and/or have vouchers and want to sign up."/>
+        android:text="I am a shop and/or have vouchers and want to sign up."
+        android:onClick="registerDeveloperOnClickListener"/>
 
 </RelativeLayout>

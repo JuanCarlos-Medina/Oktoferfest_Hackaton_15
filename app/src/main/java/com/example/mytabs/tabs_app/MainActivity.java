@@ -1,6 +1,8 @@
 package com.example.mytabs.tabs_app;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -11,6 +13,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -23,6 +26,9 @@ public class MainActivity extends ActionBarActivity {
 
     public static String[] openMessages = new String[] {"Null", "Null", "Null", "Null", "Null"};
     private static final String TAG = "junk";
+
+    // TODO(Katharina): Store this to savedInstanceState.
+    public static boolean beingShop = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +63,7 @@ public class MainActivity extends ActionBarActivity {
     }
 
     private void initDB(){
-        myDB.insertRow("TEST",10.0,"Euro","Amazon","18 May","18 May", 1, "CSJWF", 0);
+        myDB.insertRow("TEST", 10.0, "Euro", "Amazon", "18 May", "18 May", 1, "CSJWF", 0);
     }
 
     private void closeDB() {
@@ -105,8 +111,11 @@ public class MainActivity extends ActionBarActivity {
 
         if (savedInstanceState != null) {
             Log.i(TAG, "setting selected tab from saved bundle");
-//            get the saved selected tab's index and set that tab as selected
+            // get the saved selected tab's index and set that tab as selected
             actionBar.setSelectedNavigationItem(savedInstanceState.getInt("tabIndex", 0));
+        }
+        if (beingShop) {
+            actionBar.selectTab(tab_two);
         }
     }
 
@@ -125,4 +134,8 @@ public class MainActivity extends ActionBarActivity {
         adapter.remove(voucherToRemove);
     }
 
+    public void registerDeveloperOnClickListener(View v) {
+        Intent intent = new Intent((Activity) v.getContext(), RegisterShopActivity.class);
+        v.getContext().startActivity(intent);
+    }
 }
