@@ -43,5 +43,7 @@ public class RegisterShopActivity extends AppCompatActivity {
     public void emailInputOnClickListener(View v) {
         Intent intent = new Intent(this, EnterCodeActivity.class);
         startActivity(intent);
+        // TODO(whoever): Change this...best pratices, ohoh.
+        this.finish();
     }
 }

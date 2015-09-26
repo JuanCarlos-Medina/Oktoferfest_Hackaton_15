@@ -45,7 +45,8 @@ public class EnterCodeActivity extends AppCompatActivity {
         // TODO(Katharina): Change here something about this,
         // such that shop can do something in MainActivity.
         MainActivity.beingShop = true;
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+
+        // TODO(whoever): Change this...best pratices, ohoh.
+        this.finish();
     }
 }

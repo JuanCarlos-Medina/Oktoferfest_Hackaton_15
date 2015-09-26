@@ -1,10 +1,13 @@
 package com.example.mytabs.tabs_app;
 
 import android.app.Activity;
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBar.Tab;
 import android.support.v7.app.ActionBarActivity;
@@ -39,6 +42,15 @@ public class MainActivity extends ActionBarActivity {
         openDB();
         initDB();
         readDB();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (beingShop) {
+            setContentView(R.layout.activity_container);
+        }
     }
 
     @Override
@@ -131,6 +143,8 @@ public class MainActivity extends ActionBarActivity {
 
         ListView openMessagesListView = (ListView) findViewById(R.id.listview_openmessages);
         MessageListAdapter adapter = (MessageListAdapter) openMessagesListView.getAdapter();
+
+        // TODO(Julian): Delete item from data base.
         adapter.remove(voucherToRemove);
     }
 

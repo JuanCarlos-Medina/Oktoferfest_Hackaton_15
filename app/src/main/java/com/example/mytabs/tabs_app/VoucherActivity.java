@@ -55,8 +55,6 @@ public class VoucherActivity extends AppCompatActivity {
 
     public void useVoucherOnClickHandler(View v) {
 
-        // TODO(Julian): Delete item from data base.
-
         Button voucherButton = (Button) findViewById(R.id.message_useVoucher);
         voucherButton.setVisibility(View.INVISIBLE);
 
