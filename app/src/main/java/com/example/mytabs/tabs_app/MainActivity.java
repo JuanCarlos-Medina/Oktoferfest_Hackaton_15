@@ -25,9 +25,9 @@ import dad.model.VoucherContract;
 
 public class MainActivity extends ActionBarActivity {
 
-    VoucherContract myDB;
+    public VoucherContract myDB;
 
-    public static String[] openMessages = new String[] {"Null", "Null", "Null", "Null", "Null"};
+    public static ArrayList<String> openMessages = new ArrayList<String>();
     private static final String TAG = "junk";
 
     // TODO(Katharina): Store this to savedInstanceState.
@@ -42,6 +42,7 @@ public class MainActivity extends ActionBarActivity {
         openDB();
         initDB();
         readDB();
+        resetDB();
     }
 
     @Override
@@ -67,8 +68,11 @@ public class MainActivity extends ActionBarActivity {
         if(cursor.moveToFirst())
             do {
                 String company = cursor.getString(5);
-                if(counter < 5) openMessages[counter] = company;
-                counter++;
+                int dismissed = cursor.getInt(4);
+                if(counter < 5 && dismissed == 0) {
+                    openMessages.add(company);
+                    counter++;
+                }
             } while(cursor.moveToNext());
 
         cursor.close();
@@ -76,10 +80,18 @@ public class MainActivity extends ActionBarActivity {
 
     private void initDB(){
         myDB.insertRow("TEST", 10.0, "Euro", "Amazon", "18 May", "18 May", 1, "CSJWF", 0);
+        myDB.insertRow("TEST",10.0,"Euro","Google","18 May","18 May", 1, "CSJWF", 0);
+        myDB.insertRow("TEST",10.0,"Euro","Yahoo","18 May","18 May", 1, "CSJWF", 0);
+        myDB.insertRow("TEST",10.0,"Euro","Twitter","18 May","18 May", 1, "CSJWF", 1);
+        myDB.insertRow("TEST",10.0,"Euro","Youtube","18 May","18 May", 1, "CSJWF", 0);
+        myDB.insertRow("TEST",10.0,"Euro","9Gag","18 May","18 May", 1, "CSJWF", 0);
+    }
+
+    private void resetDB() {
+        myDB.deleteAll();
     }
 
     private void closeDB() {
-        myDB.deleteAll();
         myDB.close();
     }
 
