@@ -1,16 +1,23 @@
 package com.example.mytabs.tabs_app;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.mytabs.tabs_app.R;
 
 public class VoucherActivity extends AppCompatActivity {
+
+    String voucherInfo = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,9 +25,10 @@ public class VoucherActivity extends AppCompatActivity {
         setContentView(R.layout.activity_voucher);
 
         Intent intent = getIntent();
-        String message = intent.getStringExtra(MyVouchersFragment.EXTRA_MESSAGE);
+        voucherInfo = intent.getStringExtra(MessageListAdapter.EXTRA_MESSAGE);
 
         TextView companyName = (TextView) findViewById(R.id.voucher_textView);
+        companyName.setText(voucherInfo);
     }
 
     @Override
@@ -43,5 +51,20 @@ public class VoucherActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void useVoucherOnClickHandler(View v) {
+
+        // TODO(Julian): Delete item from data base.
+
+        Button voucherButton = (Button) findViewById(R.id.message_useVoucher);
+        voucherButton.setVisibility(View.INVISIBLE);
+
+        LinearLayout theVoucher = (LinearLayout) findViewById(R.id.linearlayout_voucher);
+        theVoucher.setVisibility(View.VISIBLE);
+
+        //ListView openMessagesListView = (ListView) findViewById(R.id.listview_openmessages);
+        //MessageListAdapter adapter = (MessageListAdapter) openMessagesListView.getAdapter();
+        //adapter.remove(voucherInfo);
     }
 }
