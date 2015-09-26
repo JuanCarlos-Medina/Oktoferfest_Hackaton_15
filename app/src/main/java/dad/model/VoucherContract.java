@@ -51,15 +51,15 @@ public final class VoucherContract {
             "CREATE TABLE " + VoucherTableEntry.TABLE_NAME + " (" +
                     VoucherTableEntry.COLUMN_NAME_VOUCHER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                     VoucherTableEntry.COLUMN_NAME_VOUCHER_TEXT + TEXT_TYPE + COMMA_SEP +
-                    VoucherTableEntry.COLUMN_NAME_VOUCHER_VALUE + VALUE_TYPE + "NOT NULL," + COMMA_SEP +
-                    VoucherTableEntry.COLUMN_NAME_VOUCHER_TYPE + TEXT_TYPE + "NOT NULL," + COMMA_SEP +
-                    VoucherTableEntry.COLUMN_NAME_VOUCHER_DISMISSED + TOGGLE_TYPE + "NOT NULL," + COMMA_SEP +
-                    VoucherTableEntry.COLUMN_NAME_SHOP_NAME + TEXT_TYPE + "NOT NULL," + COMMA_SEP +
+                    VoucherTableEntry.COLUMN_NAME_VOUCHER_VALUE + VALUE_TYPE + "NOT NULL " + COMMA_SEP +
+                    VoucherTableEntry.COLUMN_NAME_VOUCHER_TYPE + TEXT_TYPE + "NOT NULL " + COMMA_SEP +
+                    VoucherTableEntry.COLUMN_NAME_VOUCHER_DISMISSED + TOGGLE_TYPE + "NOT NULL " + COMMA_SEP +
+                    VoucherTableEntry.COLUMN_NAME_SHOP_NAME + TEXT_TYPE + "NOT NULL " + COMMA_SEP +
                     //VoucherTableEntry.COLUMN_NAME_VOUCHER_MAX_VALUE + VALUE_TYPE + COMMA_SEP +
                     VoucherTableEntry.COLUMN_NAME_DATE_RECIEVED + TEXT_TYPE + COMMA_SEP +
                     VoucherTableEntry.COLUMN_NAME_DATE_EXPIRED + TEXT_TYPE + COMMA_SEP +
-                    VoucherTableEntry.COLUMN_NAME_VOUCHER_CODE_VISIBLE + TOGGLE_TYPE + "NOT NULL," + COMMA_SEP +
-                    VoucherTableEntry.COLUMN_NAME_VOUCHER_CODE + TEXT_TYPE + "NOT NULL)";
+                    VoucherTableEntry.COLUMN_NAME_VOUCHER_CODE_VISIBLE + TOGGLE_TYPE + "NOT NULL " + COMMA_SEP +
+                    VoucherTableEntry.COLUMN_NAME_VOUCHER_CODE + TEXT_TYPE + "NOT NULL )";
 
     private static final String SQL_DELETE_ENTRIES =
             "DROP TABLE IF EXISTS " + VoucherTableEntry.TABLE_NAME;
@@ -91,7 +91,7 @@ public final class VoucherContract {
     }
 
     // Add a new set of values to the database.
-    public long insertRow(String description, double discount_value, int discount_type, String shop_name, String date_recieved,
+    public long insertRow(String description, double discount_value, String discount_type, String shop_name, String date_recieved,
                           String date_expired, int code_visible, String code, int discount_dismissed) {
 
         ContentValues initialValues = new ContentValues();
@@ -109,22 +109,22 @@ public final class VoucherContract {
         return db.insert(VoucherTableEntry.TABLE_NAME, null, initialValues);
     }
 
-    /*// Delete a row from the database, by rowId (primary key)
+    // Delete a row from the database, by rowId (primary key)
     public boolean deleteRow(long rowId) {
-        String where = KEY_ROWID + "=" + rowId;
-        return db.delete(DATABASE_TABLE, where, null) != 0;
+        String where = VoucherTableEntry.COLUMN_NAME_VOUCHER_ID + "=" + rowId;
+        return db.delete(VoucherTableEntry.TABLE_NAME, where, null) != 0;
     }
 
     public void deleteAll() {
         Cursor c = getAllRows();
-        long rowId = c.getColumnIndexOrThrow(KEY_ROWID);
+        long rowId = c.getColumnIndexOrThrow(VoucherTableEntry.COLUMN_NAME_VOUCHER_ID);
         if (c.moveToFirst()) {
             do {
                 deleteRow(c.getLong((int) rowId));
             } while (c.moveToNext());
         }
         c.close();
-    }*/
+    }
 
     // Return all data in the database.
     public Cursor getAllRows() {

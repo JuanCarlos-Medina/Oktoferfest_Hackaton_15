@@ -6,7 +6,8 @@
     android:layout_height="wrap_content"
     android:minHeight="?android:attr/listPreferredItemHeight"
     android:gravity="center_vertical"
-    android:id="@+id/list_item_openmessages_linearlayout" >
+    android:id="@+id/list_item_openmessages_linearlayout"
+    android:weightSum="1">
 
     <TextView
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -14,9 +15,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:minHeight="?android:attr/listPreferredItemHeight"
-        android:gravity="center_vertical"
+        android:gravity="center"
         android:clickable="true"
-        android:id="@+id/list_item_openmessages_textview" />
+        android:id="@+id/list_item_openmessages_textview"
+        android:layout_weight="0.99" />
 
     <Button
         android:id="@+id/message_sendMessage"

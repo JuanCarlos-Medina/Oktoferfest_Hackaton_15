@@ -1,6 +1,7 @@
 package com.example.mytabs.tabs_app;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBar.Tab;
@@ -14,8 +15,13 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import dad.model.VoucherContract;
+
 public class MainActivity extends ActionBarActivity {
 
+    VoucherContract myDB;
+
+    public static String[] openMessages = new String[] {"Null", "Null", "Null", "Null", "Null"};
     private static final String TAG = "junk";
 
     @Override
@@ -23,6 +29,45 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_container);
         setUpTabs(savedInstanceState);
+
+        openDB();
+        initDB();
+        readDB();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        closeDB();
+    }
+
+    private void readDB(){
+        Cursor cursor = myDB.getAllRows();
+
+        int counter = 0;
+
+        if(cursor.moveToFirst())
+            do {
+                String company = cursor.getString(5);
+                if(counter < 5) openMessages[counter] = company;
+                counter++;
+            } while(cursor.moveToNext());
+
+        cursor.close();
+    }
+
+    private void initDB(){
+        myDB.insertRow("TEST",10.0,"Euro","Amazon","18 May","18 May", 1, "CSJWF", 0);
+    }
+
+    private void closeDB() {
+        myDB.deleteAll();
+        myDB.close();
+    }
+
+    private void openDB() {
+        myDB = new VoucherContract(this);
+        myDB.open();
     }
 
     @Override

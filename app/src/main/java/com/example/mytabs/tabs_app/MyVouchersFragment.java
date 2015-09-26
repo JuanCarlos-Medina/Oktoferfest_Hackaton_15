@@ -30,8 +30,7 @@ public class MyVouchersFragment extends Fragment {
 
         View rootView = inflater.inflate(R.layout.fragment_one, container, false);
 
-        String[] openMessages = new String[] { "Voucher 1", "Voucher 2", "Voucher 3",
-                "Voucher 4", "Voucher 5"};
+        String[] openMessages = MainActivity.openMessages;
 
         List<String> openMessageList = new ArrayList<>(Arrays.asList(openMessages));
 
