@@ -36,33 +36,23 @@ public class MainActivity extends ActionBarActivity {
 
         Tab tab_one = actionBar.newTab();
         Tab tab_two = actionBar.newTab();
-        Tab tab_three = actionBar.newTab();
 
-        FirstFragment firstFragment = new FirstFragment();
-        tab_one.setText("One")
-                .setContentDescription("The first tab")
+        MyVouchersFragment myVouchersFragment = new MyVouchersFragment();
+        tab_one.setText("My Vouchers")
+                .setContentDescription("SeeMyVouchers tab")
                 .setTabListener(
-                        new MyTabListener<FirstFragment>(
-                                firstFragment));
+                        new MyTabListener<MyVouchersFragment>(
+                                myVouchersFragment));
 
-        SecondFragment secondFragment = new SecondFragment();
-        tab_two.setText("Two")
-                .setContentDescription("The second tab")
+        SendVouchersFragment sendVouchersFragment = new SendVouchersFragment();
+        tab_two.setText("Send Vouchers")
+                .setContentDescription("SendVouchers tab")
                 .setTabListener(
-                        new MyTabListener<SecondFragment>(
-                                secondFragment));
-
-        ThirdFragment thirdFragment = new ThirdFragment();
-        tab_three
-                .setText("Three")
-                .setContentDescription("The third tab")
-                .setTabListener(
-                        new MyTabListener<ThirdFragment>(
-                                thirdFragment));
+                        new MyTabListener<SendVouchersFragment>(
+                                sendVouchersFragment));
 
         actionBar.addTab(tab_one);
         actionBar.addTab(tab_two);
-        actionBar.addTab(tab_three);
 
         if (savedInstanceState != null) {
             Log.i(TAG, "setting selected tab from saved bundle");

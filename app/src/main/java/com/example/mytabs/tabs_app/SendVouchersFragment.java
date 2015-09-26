@@ -6,11 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-/**
- * Created by clive on 23-May-14.
- * * www.101apps.co.za
- */
-public class FirstFragment extends Fragment{
+public class SendVouchersFragment extends Fragment{
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -18,9 +14,8 @@ public class FirstFragment extends Fragment{
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragament_one, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragament_two, container, false);
         return view;
     }
 }
