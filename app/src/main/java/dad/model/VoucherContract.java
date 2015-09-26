@@ -32,6 +32,17 @@ public final class VoucherContract {
         public static final String COLUMN_NAME_VOUCHER_CODE = "v_code";
     }
 
+    public static final String[] ALL_KEYS = new String[] {VoucherTableEntry.COLUMN_NAME_VOUCHER_ID,
+            VoucherTableEntry.COLUMN_NAME_VOUCHER_TEXT,
+            VoucherTableEntry.COLUMN_NAME_VOUCHER_VALUE,
+            VoucherTableEntry.COLUMN_NAME_VOUCHER_TYPE,
+            VoucherTableEntry.COLUMN_NAME_VOUCHER_DISMISSED,
+            VoucherTableEntry.COLUMN_NAME_SHOP_NAME,
+            VoucherTableEntry.COLUMN_NAME_DATE_RECIEVED,
+            VoucherTableEntry.COLUMN_NAME_DATE_EXPIRED,
+            VoucherTableEntry.COLUMN_NAME_VOUCHER_CODE_VISIBLE,
+            VoucherTableEntry.COLUMN_NAME_VOUCHER_CODE};
+
     private static final String TEXT_TYPE = " TEXT";
     private static final String VALUE_TYPE = " REAL";
     private static final String TOGGLE_TYPE = " INTEGER";
@@ -116,7 +127,7 @@ public final class VoucherContract {
     }*/
 
     // Return all data in the database.
-    /*public Cursor getAllRows() {
+    public Cursor getAllRows() {
         String where = null;
         Cursor c = 	db.query(true, VoucherTableEntry.TABLE_NAME, ALL_KEYS,
                 where, null, null, null, null, null);
@@ -124,7 +135,7 @@ public final class VoucherContract {
             c.moveToFirst();
         }
         return c;
-    }*/
+    }
 
     /*// Get a specific row (by rowId)
     public Cursor getRow(long rowId) {
