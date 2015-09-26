@@ -5,10 +5,12 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBar.Tab;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
-
-/*main activity - we set up the action bar and tabs here
-www.101apps.co.za*/
+import java.util.ArrayList;
 
 public class MainActivity extends ActionBarActivity {
 

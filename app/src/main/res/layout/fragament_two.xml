@@ -2,25 +2,23 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageView"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/cop"/>
+    android:layout_height="match_parent"
+    android:id="@+id/noSending">
 
     <TextView
+        android:id="@+id/textViewNoSending"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Fragment Two"
-        android:id="@+id/textView"
-        android:layout_below="@+id/imageView"
+        android:text="You cannot send messages."
         android:layout_centerHorizontal="true"
         android:layout_marginTop="25dp"/>
 
+    <Button
+        android:id="@+id/the_button"
+        android:layout_below="@+id/textViewNoSending"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="I am a shop and/or have vouchers and want to sign up."/>
 
 </RelativeLayout>
