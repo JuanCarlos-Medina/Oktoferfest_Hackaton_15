@@ -19,24 +19,31 @@
         android:text="use voucher"
         android:onClick="useVoucherOnClickHandler" />
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/linearlayout_voucher"
         android:layout_below="@+id/voucher_textView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:visibility="invisible">
 
         <ImageView
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:paddingTop="10mm"
+            android:paddingBottom="10mm"
             android:id="@+id/imageView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/smiley" />
+            android:src="@drawable/barcode" />
 
-        <TextView android:text="0481k7456L"
-            android:layout_width="match_parent"
+        <TextView
+            android:text="0481k7456L"
+            android:layout_below="@+id/imageView1"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
             android:id="@+id/voucher_textViewCode"
             android:layout_height="wrap_content" />
 
-    </LinearLayout>
+    </RelativeLayout>
 
 </RelativeLayout>

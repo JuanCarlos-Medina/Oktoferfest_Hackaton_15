@@ -20,7 +20,7 @@ public class SendVouchersFragment extends Fragment{
             // TODO(Katharina): Substitute this by a good layout.
             view = inflater.inflate(R.layout.fragment_one, container, false);
         } else {
-            view = inflater.inflate(R.layout.fragament_two, container, false);
+            view = inflater.inflate(R.layout.fragment_two, container, false);
         }
 
         return view;

@@ -5,7 +5,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_voucher">Your Voucher</string>
-    <string name="title_activity_register_shop">RegisterShopActivity</string>
-    <string name="title_activity_enter_code">EnterCodeActivity</string>
+    <string name="title_activity_register_shop">Registration...</string>
+    <string name="title_activity_enter_code">Registration...</string>
 
 </resources>

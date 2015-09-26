@@ -7,7 +7,8 @@
     tools:context="com.example.mytabs.tabs_app.RegisterShopActivity">
 
     <TextView android:text="Enter your shop e-mail adress:" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:id="@+id/textView2" />
 
     <EditText
         android:layout_width="fill_parent"
@@ -15,13 +16,19 @@
         android:id="@+id/editInp"
         android:hint="e-mail"
         android:singleLine="true"
-        android:inputType="textCapWords"/>
+        android:inputType="textCapWords"
+        android:layout_below="@+id/textView2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <Button
         android:id="@+id/emailEntered_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="done"
-        android:onClick="emailInputOnClickListener"/>
+        android:onClick="emailInputOnClickListener"
+        android:layout_below="@+id/editInp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

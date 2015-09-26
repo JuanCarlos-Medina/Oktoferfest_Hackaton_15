@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -58,7 +59,7 @@ public class VoucherActivity extends AppCompatActivity {
         Button voucherButton = (Button) findViewById(R.id.message_useVoucher);
         voucherButton.setVisibility(View.INVISIBLE);
 
-        LinearLayout theVoucher = (LinearLayout) findViewById(R.id.linearlayout_voucher);
+        RelativeLayout theVoucher = (RelativeLayout) findViewById(R.id.linearlayout_voucher);
         theVoucher.setVisibility(View.VISIBLE);
 
         //ListView openMessagesListView = (ListView) findViewById(R.id.listview_openmessages);
