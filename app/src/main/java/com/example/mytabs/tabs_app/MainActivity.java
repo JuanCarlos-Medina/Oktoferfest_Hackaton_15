@@ -66,10 +66,10 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void sendMessageOnClickHandler(View v) {
-        String voucherToRemove = (String)v.getTag();
+        String voucherToRemove = (String) v.getTag();
 
         Context context = getApplicationContext();
-        CharSequence text = "Hello toast!";
+        CharSequence text = "Sent!";
         int duration = Toast.LENGTH_SHORT;
 
         Toast toast = Toast.makeText(context, text, duration);

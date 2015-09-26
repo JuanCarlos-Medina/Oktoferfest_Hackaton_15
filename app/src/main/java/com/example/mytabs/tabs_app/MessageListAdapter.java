@@ -38,10 +38,11 @@ public class MessageListAdapter extends ArrayAdapter<String> {
         holder = new StringHolder();
         holder.voucherInfoString = items.get(position);
         holder.sendMessageButton = (Button)row.findViewById(R.id.message_sendMessage);
+        holder.sendMessageButton.setTag(holder.voucherInfoString);
 
         holder.voucherInfo = (TextView)row.findViewById(R.id.list_item_openmessages_textview);
 
-        row.setTag(holder);
+        row.setTag(holder.voucherInfoString);
 
         setupItem(holder);
         return row;
