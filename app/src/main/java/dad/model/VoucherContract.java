@@ -137,6 +137,25 @@ public final class VoucherContract {
         return c;
     }
 
+    // Get a specific row (by rowId)
+    public void dismissVoucher(long rowId) {
+        String where = VoucherTableEntry.COLUMN_NAME_VOUCHER_ID + "=" + rowId;
+
+        // New value for one column
+        ContentValues values = new ContentValues();
+        values.put(VoucherTableEntry.COLUMN_NAME_VOUCHER_DISMISSED, 1);
+
+        //Which row to update, based on the ID
+        String selection = VoucherTableEntry.COLUMN_NAME_VOUCHER_ID + " LIKE ?";
+        String[] selectionArgs = { String.valueOf(rowId) };
+
+        db.update(
+                VoucherTableEntry.TABLE_NAME,
+                values,
+                selection,
+                selectionArgs);
+    }
+
     /*// Get a specific row (by rowId)
     public Cursor getRow(long rowId) {
         String where = KEY_ROWID + "=" + rowId;
