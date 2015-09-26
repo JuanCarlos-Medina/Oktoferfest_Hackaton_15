@@ -30,9 +30,7 @@ public class MyVouchersFragment extends Fragment {
 
         View rootView = inflater.inflate(R.layout.fragment_one, container, false);
 
-        String[] openMessages = MainActivity.openMessages;
-
-        List<String> openMessageList = new ArrayList<>(Arrays.asList(openMessages));
+        List<String> openMessageList = MainActivity.openMessages;
 
         MessageListAdapter openMessagesAdapter =
                 new MessageListAdapter(
