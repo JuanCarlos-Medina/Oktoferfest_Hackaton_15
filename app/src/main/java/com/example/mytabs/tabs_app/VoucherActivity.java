@@ -37,7 +37,7 @@ public class VoucherActivity extends AppCompatActivity {
         }
 
         TextView companyName = (TextView) findViewById(R.id.voucher_textView);
-        companyName.setText(selectedVoucher.getShop() + ", " + selectedVoucher.getAmount() + " "
+        companyName.setText(selectedVoucher.getShop() + "\n\n " + selectedVoucher.getAmount() + " "
                 + selectedVoucher.getUnit());
     }
 

@@ -6,44 +6,71 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.example.mytabs.tabs_app.VoucherActivity">
 
-    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
-        android:id="@+id/voucher_textView"
-        android:layout_height="wrap_content" />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/message_useVoucher"
-        android:layout_below="@+id/voucher_textView"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="use voucher"
-        android:onClick="useVoucherOnClickHandler" />
+        <TextView android:text="@string/hello_world" android:layout_width="match_parent"
+            android:id="@+id/voucher_textView"
+            android:layout_height="295dp"
+            android:layout_alignRight="@+id/linearlayout_voucher"
+            android:layout_alignEnd="@+id/linearlayout_voucher"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:gravity="center"
+            android:textSize="32sp"/>
 
-    <RelativeLayout
-        android:id="@+id/linearlayout_voucher"
-        android:layout_below="@+id/voucher_textView"
+        <Button
+            android:id="@+id/message_useVoucher"
+            android:layout_below="@+id/voucher_textView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:text="use voucher"
+            android:onClick="useVoucherOnClickHandler" />
+    </FrameLayout>
+
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="invisible">
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true">
 
-        <ImageView
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:paddingTop="10mm"
-            android:paddingBottom="10mm"
-            android:id="@+id/imageView1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/barcode" />
+        <RelativeLayout
+            android:id="@+id/linearlayout_voucher"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="invisible"
+            android:layout_below="@+id/voucher_textView"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true">
 
-        <TextView
-            android:text="0481k7456L"
-            android:layout_below="@+id/imageView1"
-            android:layout_centerHorizontal="true"
-            android:layout_width="wrap_content"
-            android:id="@+id/voucher_textViewCode"
-            android:layout_height="wrap_content" />
+            <ImageView
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:paddingTop="2mm"
+                android:paddingBottom="2mm"
+                android:id="@+id/imageView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/barcode" />
 
-    </RelativeLayout>
+            <TextView
+                android:text="0481k7456L"
+                android:layout_width="wrap_content"
+                android:id="@+id/voucher_textViewCode"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@+id/imageView1"
+                android:textSize="32sp"
+                android:background="@drawable/back"
+                android:gravity="center"/>
+
+        </RelativeLayout>
+    </FrameLayout>
 
 </RelativeLayout>

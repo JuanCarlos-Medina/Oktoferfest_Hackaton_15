@@ -17,6 +17,7 @@
         android:minHeight="?android:attr/listPreferredItemHeight"
         android:gravity="center"
         android:clickable="true"
+        android:textSize="20sp"
         android:id="@+id/list_item_openmessages_textview"
         android:layout_weight="0.99" />
 

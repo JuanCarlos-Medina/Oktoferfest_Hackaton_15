@@ -10,18 +10,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="You cannot send vouchers."
+        android:text="You cannot \n send vouchers."
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp"/>
+        android:layout_above="@+id/the_button"
+        android:layout_alignParentTop="true"
+        android:gravity="center"/>
 
     <Button
         android:id="@+id/the_button"
         style="@style/ElementMargins"
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="I am a shop and/or have vouchers and want to sign up."
         android:onClick="registerDeveloperOnClickListener"
-        android:layout_below="@+id/textViewNoSending"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
