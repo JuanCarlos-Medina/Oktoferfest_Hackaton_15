@@ -45,7 +45,7 @@ public class MainActivity extends ActionBarActivity {
         openDB();
         initDB();
         readDB();
-        resetDB();
+        //resetDB();
     }
 
     @Override
@@ -95,7 +95,7 @@ public class MainActivity extends ActionBarActivity {
         myDB.insertRow("TEST", 10.0, "Euro", "Amazon", "18 May", "18 May", 1, "CSJWF", 0);
         myDB.insertRow("TEST",10.0,"Euro","Google","18 May","18 May", 1, "CSJWF", 0);
         myDB.insertRow("TEST",10.0,"Euro","Yahoo","18 May","18 May", 1, "CSJWF", 0);
-        myDB.insertRow("TEST",10.0,"Euro","Twitter","18 May","18 May", 1, "CSJWF", 1);
+        myDB.insertRow("TEST",10.0,"Euro","Twitter","18 May","18 May", 1, "CSJWF", 0);
         myDB.insertRow("TEST",10.0,"Euro","Youtube","18 May","18 May", 1, "CSJWF", 0);
         myDB.insertRow("TEST", 10.0, "Euro", "9Gag", "18 May", "18 May", 1, "CSJWF", 0);
     }
@@ -170,7 +170,14 @@ public class MainActivity extends ActionBarActivity {
         ListView openMessagesListView = (ListView) findViewById(R.id.listview_openmessages);
         MessageListAdapter adapter = (MessageListAdapter) openMessagesListView.getAdapter();
 
-        myDB.dismissVoucher(voucherToRemove_Id);
+        // TODO(Julian): Delete item from data base. Here.
+
+        if(myDB.getNumDismissed() < 5)
+            myDB.dismissVoucher(voucherToRemove_Id);
+        else
+            myDB.deleteRow(voucherToRemove_Id);
+
+        System.out.println("Number Dismissed: " + myDB.getNumDismissed());
 
         Voucher voucherToRemove = new Voucher(voucherToRemove_Id);
         adapter.remove(voucherToRemove);
