@@ -22,18 +22,46 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.graphics.Color;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.text.format.DateFormat;
+import android.view.View;
+import android.widget.CompoundButton;
+import android.widget.Switch;
+import android.widget.TextView;
+
+import java.util.UUID;
+
+import ch.uepaa.p2pkit.ConnectionCallbacks;
+import ch.uepaa.p2pkit.ConnectionResult;
+import ch.uepaa.p2pkit.ConnectionResultHandling;
+import ch.uepaa.p2pkit.KitClient;
+import ch.uepaa.p2pkit.discovery.GeoListener;
+import ch.uepaa.p2pkit.discovery.InfoTooLongException;
+import ch.uepaa.p2pkit.discovery.P2pListener;
+import ch.uepaa.p2pkit.discovery.Peer;
+import ch.uepaa.p2pkit.messaging.MessageListener;
+
 import dad.model.VoucherContract;
 
 public class MainActivity extends ActionBarActivity {
 
     VoucherContract myDB;
 
+    public String newVoucher;
     public static ActionBar actionBar;
     public static Tab tab_one;
     public static ArrayList<Voucher> openMessages = new ArrayList<>();
     public static ArrayList<Voucher> deletedMessages = new ArrayList<>();
 
     private static final String TAG = "junk";
+
+    private static final String APP_KEY = "eyJzaWduYXR1cmUiOiJReUVTVFMwbWVtU2ltbWFBRXV3dnd4aGlEN1g5bnN1QVBZSlpMcUltNldObTkwcjh3MjYxUGk3a3FsbWxXVWdOZDQ0NVlQN0JWNE1sd0FTaEsvbVBhaGJDbWw1UlpXYkI2TlFVSU8wSzgrQTQvT1MrV3JybzV3MXdRZE1ZOUlOeVB2ZEZKMlA2WVBTMXQreGg2eE5LK0trYStrMm9kY052T1AwRGJJcXc5Lzg9IiwiYXBwSWQiOjEyNjEsInZhbGlkVW50aWwiOjE2Nzk0LCJhcHBVVVVJRCI6IjE2RTY2NzM5LTlFMkYtNEVEMy1BQ0Q4LUJCMUFBRTZCQkY2NyJ9";
+
+    private static int i=10;
+
+
 
     // TODO(Katharina): Store this to savedInstanceState.
     public static boolean beingShop = false;
@@ -48,6 +76,9 @@ public class MainActivity extends ActionBarActivity {
         initDB();
         readDB();
         //resetDB();
+
+        mShouldStartServices = true;
+        showColorPickerDialog();
     }
 
     @Override
@@ -64,6 +95,10 @@ public class MainActivity extends ActionBarActivity {
                 adapter.remove(voucher);
             }
             deletedMessages.clear();
+        }
+
+        if(mWantToConnect && !KitClient.getInstance(this).isConnected()) {
+            enableKit();
         }
     }
 
@@ -192,9 +227,232 @@ public class MainActivity extends ActionBarActivity {
     public void releaseVoucherOnClickListener(View v) {
         Context context = getApplicationContext();
         CharSequence text = "Sent to customers!";
+
+        showColorPickerDialog();
+
         int duration = Toast.LENGTH_SHORT;
 
         Toast toast = Toast.makeText(context, text, duration);
         toast.show();
     }
+
+    //P2P STUFF
+    private final P2pListener mP2pDiscoveryListener = new P2pListener() {
+
+        @Override
+        public void onStateChanged(final int state) {
+            logToView("P2pListener | State changed: " + state);
+        }
+
+        @Override
+        public void onPeerDiscovered(final Peer peer) {
+            System.out.println("LOOOG oh yeah");
+            byte[] colorBytes = peer.getDiscoveryInfo();
+            if (colorBytes != null && colorBytes.length == 3) {
+                logToView("P2pListener | Peer discovered: " + peer.getNodeId() + " with color: ");
+            } else {
+                logToView("P2pListener | Peer discovered: " + peer.getNodeId() + " without color");
+            }
+        }
+
+        @Override
+        public void onPeerLost(final Peer peer) {
+            logToView("P2pListener | Peer lost: " + peer.getNodeId());
+        }
+
+        @Override
+        public void onPeerUpdatedDiscoveryInfo(Peer peer) {
+
+            System.out.println("LOOOG oh yeah 2");
+            //logToView("Voucher 20% H&M");
+            //mLogView.setText(SendVouchersFragment.voucherMessage);
+           // mLogView.setText("Voucher 20% H&M");
+            newVoucher = "Voucher 20% H&M";
+            Context context = getApplicationContext();
+            CharSequence text = "New voucher arrived!";
+            int duration = Toast.LENGTH_SHORT;
+
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+            //WRITE "VOUCHER" TO EXISTING LIST
+
+            /*byte[] voucherBytes = peer.getDiscoveryInfo();
+            try {
+                if (voucherBytes != null) {
+                    MainActivity.newVoucher = new String(voucherBytes, "UTF-8");
+                }
+            } catch (Exception e) {
+
+            }*/
+
+        }
+    };
+
+
+
+
+
+
+
+
+
+
+    private final GeoListener mGeoDiscoveryListener = new GeoListener() {
+
+        @Override
+        public void onStateChanged(final int state) {
+            logToView("GeoListener | State changed: " + state);
+        }
+
+        @Override
+        public void onPeerDiscovered(final UUID nodeId) {
+            logToView("GeoListener | Peer discovered: " + nodeId);
+
+            // sending a message to the peer
+            KitClient.getInstance(MainActivity.this).getMessageServices().sendMessage(nodeId, "SimpleChatMessage", "From Android: Hello GEO!".getBytes());
+        }
+
+        @Override
+        public void onPeerLost(final UUID nodeId) {
+            logToView("GeoListener | Peer lost: " + nodeId);
+        }
+    };
+
+    private final MessageListener mMessageListener = new MessageListener() {
+
+        @Override
+        public void onStateChanged(final int state) {
+            logToView("MessageListener | State changed: " + state);
+        }
+
+        @Override
+        public void onMessageReceived(final long timestamp, final UUID origin, final String type, final byte[] message) {
+            logToView("MessageListener | Message received: From=" + origin + " type=" + type + " message=" + new String(message));
+        }
+    };
+
+    private final ConnectionCallbacks mConnectionCallbacks = new ConnectionCallbacks() {
+
+        @Override
+        public void onConnected() {
+            logToView("Successfully connected to P2P Services, with id: " + KitClient.getInstance(MainActivity.this).getNodeId().toString());
+
+
+            if (mShouldStartServices) {
+                mShouldStartServices = false;
+
+                startP2pDiscovery();
+                startGeoDiscovery();
+            }
+        }
+
+        @Override
+        public void onConnectionSuspended() {
+            logToView("Connection to P2P Services suspended");
+
+
+        }
+
+        @Override
+        public void onConnectionFailed(ConnectionResult connectionResult) {
+            logToView("Connection to P2P Services failed with status: " + connectionResult.getStatusCode());
+            ConnectionResultHandling.showAlertDialogForConnectionError(MainActivity.this, connectionResult.getStatusCode());
+        }
+    };
+
+    private boolean mShouldStartServices;
+    private boolean mWantToConnect = false;
+
+    private int mCurrentColor;
+
+    private TextView mLogView;
+
+    private void enableKit() {
+
+        final int statusCode = KitClient.isP2PServicesAvailable(this);
+        if (statusCode == ConnectionResult.SUCCESS) {
+            KitClient client = KitClient.getInstance(this);
+            client.registerConnectionCallbacks(mConnectionCallbacks);
+
+            if (client.isConnected()) {
+                logToView("Client already connected");
+            } else {
+                logToView("Connecting P2PKit client");
+                client.connect(APP_KEY);
+            }
+            mWantToConnect = false;
+        } else {
+            mWantToConnect = true;
+            logToView("Cannot start P2PKit, status code: " + statusCode);
+            ConnectionResultHandling.showAlertDialogForConnectionError(this, statusCode);
+        }
+    }
+
+    private void disableKit() {
+        KitClient.getInstance(this).disconnect();
+    }
+
+    private void startP2pDiscovery() {
+        try {
+            KitClient.getInstance(this).getDiscoveryServices().setP2pDiscoveryInfo(getColorBytes(mCurrentColor));
+        } catch (InfoTooLongException e) {
+            logToView("P2pListener | The discovery info is too long");
+        }
+        KitClient.getInstance(this).getDiscoveryServices().addListener(mP2pDiscoveryListener);
+    }
+
+    private void stopP2pDiscovery() {
+        KitClient.getInstance(this).getDiscoveryServices().removeListener(mP2pDiscoveryListener);
+        logToView("P2pListener removed");
+    }
+
+    private void startGeoDiscovery() {
+        KitClient.getInstance(this).getMessageServices().addListener(mMessageListener);
+
+        KitClient.getInstance(this).getDiscoveryServices().addListener(mGeoDiscoveryListener);
+    }
+
+    private void stopGeoDiscovery() {
+        KitClient.getInstance(this).getMessageServices().removeListener(mMessageListener);
+        logToView("MessageListener removed");
+
+        KitClient.getInstance(this).getDiscoveryServices().removeListener(mGeoDiscoveryListener);
+        logToView("GeoListener removed");
+    }
+
+    private void logToView(String message) {
+        // CharSequence currentTime = DateFormat.format("hh:mm:ss - ", System.currentTimeMillis());
+        //mLogView.setText(currentTime + message + "\n" + mLogView.getText());
+    }
+
+    private byte[] getColorBytes(int color) {
+        return new byte[] {(byte) Color.red(color), (byte) Color.green(color), (byte) Color.blue(color)};
+    }
+
+
+    public void onColorPicked(int colorCode) {
+        mCurrentColor = colorCode;
+        System.out.println("LOOOG oh yeah sending a");
+        if (mShouldStartServices) {
+            System.out.println("LOOOG oh yeah sending b");
+            enableKit();
+        } else if (KitClient.getInstance(this).isConnected()) {
+            System.out.println("LOOOG oh yeah sending c");
+            try {
+                byte[] colorBytes = getColorBytes(mCurrentColor);
+                KitClient.getInstance(this).getDiscoveryServices().setP2pDiscoveryInfo(colorBytes);
+                System.out.println("LOOOG oh yeah sending d");
+            } catch (InfoTooLongException e) {
+                logToView("P2pListener | The discovery info is too long");
+            }
+        }
+    }
+
+    private void showColorPickerDialog() {
+        System.out.println("LOOOG oh yeah sending1");
+        i+=10;
+        onColorPicked(i);
+    }
+
+
 }
