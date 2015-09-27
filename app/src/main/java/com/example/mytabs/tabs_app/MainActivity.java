@@ -28,6 +28,8 @@ public class MainActivity extends ActionBarActivity {
 
     VoucherContract myDB;
 
+    public static ActionBar actionBar;
+    public static Tab tab_one;
     public static ArrayList<Voucher> openMessages = new ArrayList<>();
     public static ArrayList<Voucher> deletedMessages = new ArrayList<>();
 
@@ -52,17 +54,17 @@ public class MainActivity extends ActionBarActivity {
     protected void onResume() {
         super.onResume();
 
-        if (beingShop) {
-            setContentView(R.layout.activity_container);
-        }
+        actionBar.selectTab(tab_one);
 
-        ListView openMessagesListView = (ListView) findViewById(R.id.listview_openmessages);
-        MessageListAdapter adapter = (MessageListAdapter) openMessagesListView.getAdapter();
-        for (Voucher voucher : deletedMessages) {
-            myDB.deleteRow(voucher.getId());
-            adapter.remove(voucher);
+        if (!deletedMessages.isEmpty()) {
+            ListView openMessagesListView = (ListView) findViewById(R.id.listview_openmessages);
+            MessageListAdapter adapter = (MessageListAdapter) openMessagesListView.getAdapter();
+            for (Voucher voucher : deletedMessages) {
+                myDB.deleteRow(voucher.getId());
+                adapter.remove(voucher);
+            }
+            deletedMessages.clear();
         }
-        deletedMessages.clear();
     }
 
     @Override
@@ -89,11 +91,11 @@ public class MainActivity extends ActionBarActivity {
 
     private void initDB(){
         myDB.insertRow("TEST", 10.0, "Euro", "Amazon", "18 May", "18 May", 1, "CSJWF", 0);
-        myDB.insertRow("TEST",10.0,"Euro","Google","18 May","18 May", 1, "CSJWF", 0);
-        myDB.insertRow("TEST",10.0,"Euro","Yahoo","18 May","18 May", 1, "CSJWF", 0);
-        myDB.insertRow("TEST",10.0,"Euro","Twitter","18 May","18 May", 1, "CSJWF", 0);
-        myDB.insertRow("TEST",10.0,"Euro","Youtube","18 May","18 May", 1, "CSJWF", 0);
-        myDB.insertRow("TEST", 10.0, "Euro", "9Gag", "18 May", "18 May", 1, "CSJWF", 0);
+        myDB.insertRow("TEST",10.0,"Euro","Google","18 May","18 May", 1, "CS1W2", 0);
+        myDB.insertRow("TEST",10.0,"Euro","Yahoo","18 May","18 May", 1, "CS99F", 0);
+        myDB.insertRow("TEST",10.0,"Euro","Twitter","18 May","18 May", 1, "CSMMF", 0);
+        myDB.insertRow("TEST",10.0,"Euro","Youtube","18 May","18 May", 1, "5S1WF", 0);
+        myDB.insertRow("TEST", 10.0, "Euro", "9Gag", "18 May", "18 May", 1, "DSJWF", 0);
     }
 
     private void resetDB() {
@@ -118,11 +120,11 @@ public class MainActivity extends ActionBarActivity {
 
     private void setUpTabs(Bundle savedInstanceState) {
 
-        ActionBar actionBar = getSupportActionBar();
+        actionBar = getSupportActionBar();
         actionBar.setNavigationMode(actionBar.NAVIGATION_MODE_TABS);
         actionBar.setDisplayShowTitleEnabled(false);
 
-        Tab tab_one = actionBar.newTab();
+        tab_one = actionBar.newTab();
         Tab tab_two = actionBar.newTab();
 
         MyVouchersFragment myVouchersFragment = new MyVouchersFragment();
