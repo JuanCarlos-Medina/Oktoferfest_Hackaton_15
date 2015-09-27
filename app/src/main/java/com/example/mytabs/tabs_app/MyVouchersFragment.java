@@ -30,7 +30,7 @@ public class MyVouchersFragment extends Fragment {
 
         View rootView = inflater.inflate(R.layout.fragment_one, container, false);
 
-        List<String> openMessageList = MainActivity.openMessages;
+        List<Voucher> openMessageList = MainActivity.openMessages;
 
         MessageListAdapter openMessagesAdapter =
                 new MessageListAdapter(

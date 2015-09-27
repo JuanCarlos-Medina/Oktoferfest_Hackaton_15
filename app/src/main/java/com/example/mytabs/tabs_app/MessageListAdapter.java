@@ -17,15 +17,15 @@ import java.util.List;
 /**
  * Created by Katharina on 26.09.2015.
  */
-public class MessageListAdapter extends ArrayAdapter<String> {
+public class MessageListAdapter extends ArrayAdapter<Voucher> {
 
     public final static String EXTRA_MESSAGE = "com.example.mytabs.tabs_app.MESSAGE";
 
-    private List<String> items;
+    private List<Voucher> items;
     private int layoutResourceId;
     private Context context;
 
-    public MessageListAdapter(Context context, int layoutResourceId, List<String> items) {
+    public MessageListAdapter(Context context, int layoutResourceId, List<Voucher> items) {
         super(context, layoutResourceId, items);
         this.layoutResourceId = layoutResourceId;
         this.context = context;
@@ -41,11 +41,11 @@ public class MessageListAdapter extends ArrayAdapter<String> {
         row = inflater.inflate(layoutResourceId, parent, false);
 
         holder = new StringHolder();
-        holder.voucherInfoString = items.get(position);
+        holder.voucherInfoString = items.get(position).getShop();
         holder.sendMessageButton = (Button)row.findViewById(R.id.message_sendMessage);
-        holder.sendMessageButton.setTag(holder.voucherInfoString);
+        holder.sendMessageButton.setTag(items.get(position).getId());
 
-        row.setTag(holder.voucherInfoString);
+        row.setTag(items.get(position).getId());
 
         holder.voucherInfo = (TextView)row.findViewById(R.id.list_item_openmessages_textview);
         holder.voucherInfo.setOnClickListener(new View.OnClickListener() {

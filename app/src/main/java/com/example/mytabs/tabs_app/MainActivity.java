@@ -27,8 +27,9 @@ public class MainActivity extends ActionBarActivity {
 
     VoucherContract myDB;
 
-    public static ArrayList<String> openMessages = new ArrayList<>();
-    public static ArrayList<Integer> voucherID = new ArrayList<>();
+    public static ArrayList<Voucher> openMessages = new ArrayList<>();
+    //public static ArrayList<String> openMessages = new ArrayList<>();
+    //public static ArrayList<Integer> voucherID = new ArrayList<>();
     private static final String TAG = "junk";
 
     // TODO(Katharina): Store this to savedInstanceState.
@@ -72,8 +73,7 @@ public class MainActivity extends ActionBarActivity {
                 int dismissed = cursor.getInt(4);
                 Integer id = (Integer) cursor.getInt(0);
                 if(counter < 5 && dismissed == 0) {
-                    openMessages.add(company);
-                    voucherID.add(id);
+                    openMessages.add(new Voucher(cursor.getInt(0), cursor.getString(5), cursor.getFloat(2), cursor.getString(3), cursor.getString(6), cursor.getString(7), cursor.getString(9), (cursor.getInt(4) == 0)));
                     counter++;
                 }
             } while(cursor.moveToNext());
@@ -148,7 +148,7 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void sendMessageOnClickHandler(View v) {
-        String voucherToRemove = (String) v.getTag();
+        int voucherToRemove_Id = (int) v.getTag();
 
         Context context = getApplicationContext();
         CharSequence text = "Sent!";
@@ -160,7 +160,10 @@ public class MainActivity extends ActionBarActivity {
         ListView openMessagesListView = (ListView) findViewById(R.id.listview_openmessages);
         MessageListAdapter adapter = (MessageListAdapter) openMessagesListView.getAdapter();
 
-        // TODO(Julian): Delete item from data base.
+        // TODO(Julian): Delete item from data base. Here.
+        myDB.dismissVoucher(voucherToRemove_Id);
+
+        Voucher voucherToRemove = new Voucher(voucherToRemove_Id);
         adapter.remove(voucherToRemove);
         //System.out.println(v.);
         //System.out.println(voucherID.get(v.getId()));
