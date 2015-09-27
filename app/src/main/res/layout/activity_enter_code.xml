@@ -8,7 +8,6 @@
 
     <TextView android:text="Enter the code you received:" android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/CodeFontLarge"
         android:id="@+id/textView" />
 
     <EditText

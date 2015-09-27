@@ -49,7 +49,7 @@ public class MainActivity extends ActionBarActivity {
 
     VoucherContract myDB;
 
-    public String newVoucher;
+    //public String newVoucher;
     public static ActionBar actionBar;
     public static Tab tab_one;
     public static ArrayList<Voucher> openMessages = new ArrayList<>();
@@ -125,12 +125,12 @@ public class MainActivity extends ActionBarActivity {
     }
 
     private void initDB(){
-        myDB.insertRow("TEST", 10.0, "Euro", "Amazon", "18 May", "18 May", 1, "CSJWF", 0);
-        myDB.insertRow("TEST",10.0,"Euro","Google","18 May","18 May", 1, "CS1W2", 0);
-        myDB.insertRow("TEST",10.0,"Euro","Yahoo","18 May","18 May", 1, "CS99F", 0);
-        myDB.insertRow("TEST",10.0,"Euro","Twitter","18 May","18 May", 1, "CSMMF", 0);
-        myDB.insertRow("TEST",10.0,"Euro","Youtube","18 May","18 May", 1, "5S1WF", 0);
-        myDB.insertRow("TEST", 10.0, "Euro", "9Gag", "18 May", "18 May", 1, "DSJWF", 0);
+        //myDB.insertRow("TEST", 10.0, "Euro", "Amazon", "18 May", "18 May", 1, "CSJWF", 0);
+        //myDB.insertRow("TEST",10.0,"Euro","Google","18 May","18 May", 1, "CS1W2", 0);
+        //myDB.insertRow("TEST",10.0,"Euro","Yahoo","18 May","18 May", 1, "CS99F", 0);
+        //myDB.insertRow("TEST",10.0,"Euro","Twitter","18 May","18 May", 1, "CSMMF", 0);
+        //myDB.insertRow("TEST",10.0,"Euro","Youtube","18 May","18 May", 1, "5S1WF", 0);
+        //myDB.insertRow("TEST", 10.0, "Euro", "9Gag", "18 May", "18 May", 1, "DSJWF", 0);
     }
 
     private void resetDB() {
@@ -266,8 +266,20 @@ public class MainActivity extends ActionBarActivity {
             System.out.println("LOOOG oh yeah 2");
             //logToView("Voucher 20% H&M");
             //mLogView.setText(SendVouchersFragment.voucherMessage);
-           // mLogView.setText("Voucher 20% H&M");
-            newVoucher = "Voucher 20% H&M";
+            // mLogView.setText("Voucher 20% H&M");
+            String newVoucherText = "Voucher 20% H&M 1Kf83fja";
+
+            String[] voucherWords = newVoucherText.split(" ");
+            myDB.insertRow("TEST", 10.0, "Euro", voucherWords[2], "18 May", "18 May", 1, voucherWords[3], 0);
+            // TODO(Julian): Get the highest ID in the data base.
+            openMessages.add(new Voucher(273, voucherWords[2], 20, "%", "", "", voucherWords[3], true ));
+            //myDB.insertRow("", 20, "%",  voucherWords[0], "", "", 1,  voucherWords[3], 0);
+            // public Voucher(int id, String shop, double amount, String unit, String received, String expires, String code, boolean isVisible) {
+
+            ListView openMessagesListView = (ListView) findViewById(R.id.listview_openmessages);
+            MessageListAdapter adapter = (MessageListAdapter) openMessagesListView.getAdapter();
+            adapter.notifyDataSetChanged();
+
             Context context = getApplicationContext();
             CharSequence text = "New voucher arrived!";
             int duration = Toast.LENGTH_SHORT;

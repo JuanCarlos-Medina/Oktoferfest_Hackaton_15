@@ -23,8 +23,7 @@
         android:clickable="true"
         android:textSize="20sp"
         android:id="@+id/list_item_openmessages_textview"
-        android:layout_weight="0.99"
-        style="@style/CodeFontLarge"/>
+        android:layout_weight="0.99"/>
 
     <Button
         android:id="@+id/message_sendMessage"
