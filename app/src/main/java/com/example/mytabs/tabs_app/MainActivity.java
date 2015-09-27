@@ -20,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import dad.model.VoucherContract;
 
@@ -28,8 +29,8 @@ public class MainActivity extends ActionBarActivity {
     VoucherContract myDB;
 
     public static ArrayList<Voucher> openMessages = new ArrayList<>();
-    //public static ArrayList<String> openMessages = new ArrayList<>();
-    //public static ArrayList<Integer> voucherID = new ArrayList<>();
+    public static ArrayList<Voucher> deletedMessages = new ArrayList<>();
+
     private static final String TAG = "junk";
 
     // TODO(Katharina): Store this to savedInstanceState.
@@ -54,6 +55,15 @@ public class MainActivity extends ActionBarActivity {
         if (beingShop) {
             setContentView(R.layout.activity_container);
         }
+
+        // TODO(Julian): Remove from data base.
+
+        ListView openMessagesListView = (ListView) findViewById(R.id.listview_openmessages);
+        MessageListAdapter adapter = (MessageListAdapter) openMessagesListView.getAdapter();
+        for (Voucher voucher : deletedMessages) {
+            adapter.remove(voucher);
+        }
+        deletedMessages.clear();
     }
 
     @Override
@@ -160,7 +170,6 @@ public class MainActivity extends ActionBarActivity {
         ListView openMessagesListView = (ListView) findViewById(R.id.listview_openmessages);
         MessageListAdapter adapter = (MessageListAdapter) openMessagesListView.getAdapter();
 
-        // TODO(Julian): Delete item from data base. Here.
         myDB.dismissVoucher(voucherToRemove_Id);
 
         Voucher voucherToRemove = new Voucher(voucherToRemove_Id);

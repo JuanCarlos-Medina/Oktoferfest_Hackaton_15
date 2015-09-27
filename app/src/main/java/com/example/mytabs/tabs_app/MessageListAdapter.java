@@ -56,7 +56,6 @@ public class MessageListAdapter extends ArrayAdapter<Voucher> {
                 Intent intent = new Intent((Activity) v.getContext(), VoucherActivity.class);
                 // TODO(Katharina): Get here the number etc.
                 intent.putExtra(EXTRA_MESSAGE, "" + v.getTag());
-                //intent.putExtra(EXTRA_MESSAGE, (String) v.getTag());
                 v.getContext().startActivity(intent);
             }
         });

@@ -19,6 +19,7 @@ import com.example.mytabs.tabs_app.R;
 public class VoucherActivity extends AppCompatActivity {
 
     String voucherInfo = "";
+    private Voucher selectedVoucher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,9 +28,17 @@ public class VoucherActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         voucherInfo = intent.getStringExtra(MessageListAdapter.EXTRA_MESSAGE);
+        selectedVoucher = new Voucher(0);
+
+        for (Voucher voucher : MainActivity.openMessages) {
+            if (voucher.getId() == Integer.parseInt(voucherInfo)) {
+                selectedVoucher = voucher;
+            }
+        }
 
         TextView companyName = (TextView) findViewById(R.id.voucher_textView);
-        companyName.setText(voucherInfo);
+        companyName.setText(selectedVoucher.getShop() + ", " + selectedVoucher.getAmount() + " "
+                + selectedVoucher.getUnit());
     }
 
     @Override
@@ -61,6 +70,11 @@ public class VoucherActivity extends AppCompatActivity {
 
         RelativeLayout theVoucher = (RelativeLayout) findViewById(R.id.linearlayout_voucher);
         theVoucher.setVisibility(View.VISIBLE);
+
+        TextView voucherCode = (TextView) findViewById(R.id.voucher_textViewCode);
+        voucherCode.setText(selectedVoucher.getCode());
+
+        MainActivity.deletedMessages.add(selectedVoucher);
 
         //ListView openMessagesListView = (ListView) findViewById(R.id.listview_openmessages);
         //MessageListAdapter adapter = (MessageListAdapter) openMessagesListView.getAdapter();
