@@ -14,12 +14,13 @@
         android:text="You cannot \n send vouchers."
         android:layout_centerHorizontal="true"
         android:layout_above="@+id/the_button"
+        android:textColor="@color/color_text"
         android:layout_alignParentTop="true"
         android:gravity="center"/>
 
     <Button
         android:id="@+id/the_button"
-        android:background="@drawable/mybutton"
+        android:background="@color/color_5"
         style="@style/ElementMargins"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

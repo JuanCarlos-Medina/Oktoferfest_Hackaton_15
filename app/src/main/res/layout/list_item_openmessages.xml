@@ -34,7 +34,7 @@
         android:id="@+id/message_sendMessage"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/mybutton"
+        android:background="@color/color_5"
         android:text="Send away"
         android:onClick="sendMessageOnClickHandler" />
 

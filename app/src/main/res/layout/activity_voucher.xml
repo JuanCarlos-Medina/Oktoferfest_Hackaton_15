@@ -17,6 +17,7 @@
             android:layout_alignRight="@+id/linearlayout_voucher"
             android:layout_alignEnd="@+id/linearlayout_voucher"
             android:layout_alignParentLeft="true"
+            android:textColor="@color/color_text"
             android:layout_alignParentStart="true"
             android:gravity="center"
             android:textSize="32sp"/>
@@ -26,7 +27,7 @@
             android:layout_below="@+id/voucher_textView"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/mybutton"
+            android:background="@color/color_5"
             android:layout_gravity="bottom"
             android:text="use voucher"
             android:onClick="useVoucherOnClickHandler" />

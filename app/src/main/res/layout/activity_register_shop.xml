@@ -9,13 +9,16 @@
 
     <TextView android:text="Enter your shop e-mail adress:" android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/color_text"
         android:textSize="20sp"
         android:id="@+id/textView2" />
 
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="50dp"
+        android:textColor="@color/color_text"
         android:id="@+id/editInp"
+        android:textColorHint="@color/color_text"
         android:hint="EMAIL"
         android:singleLine="true"
         android:inputType="textCapWords"
@@ -27,7 +30,7 @@
         android:id="@+id/emailEntered_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/mybutton"
+        android:background="@color/color_5"
         android:text="done"
         android:onClick="emailInputOnClickListener"
         android:layout_below="@+id/editInp"

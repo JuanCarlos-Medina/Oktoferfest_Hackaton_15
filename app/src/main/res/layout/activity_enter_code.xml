@@ -9,6 +9,7 @@
 
     <TextView android:text="Enter the code you received:" android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/color_text"
         android:textSize="20sp"
         android:id="@+id/textView" />
 
@@ -16,9 +17,11 @@
         android:layout_width="fill_parent"
         android:layout_height="50dp"
         android:id="@+id/editInp"
+        android:textColorHint="@color/color_text"
         android:hint="CODE"
         android:singleLine="true"
         android:inputType="textCapWords"
+        android:textColor="@color/color_text"
         android:layout_below="@+id/textView"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
@@ -27,7 +30,7 @@
         android:id="@+id/codeEntered_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/mybutton"
+        android:background="@color/color_5"
         android:text="done"
         android:onClick="codeEnteredOnClickListener"
         android:layout_below="@+id/editInp"
