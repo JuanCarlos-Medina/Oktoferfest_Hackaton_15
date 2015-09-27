@@ -45,7 +45,7 @@ public class MainActivity extends ActionBarActivity {
         openDB();
         initDB();
         readDB();
-        resetDB();
+        //resetDB();
     }
 
     @Override
@@ -56,11 +56,10 @@ public class MainActivity extends ActionBarActivity {
             setContentView(R.layout.activity_container);
         }
 
-        // TODO(Julian): Remove from data base.
-
         ListView openMessagesListView = (ListView) findViewById(R.id.listview_openmessages);
         MessageListAdapter adapter = (MessageListAdapter) openMessagesListView.getAdapter();
         for (Voucher voucher : deletedMessages) {
+            myDB.deleteRow(voucher.getId());
             adapter.remove(voucher);
         }
         deletedMessages.clear();
@@ -75,16 +74,13 @@ public class MainActivity extends ActionBarActivity {
     private void readDB(){
         Cursor cursor = myDB.getAllRows();
 
-        int counter = 0;
-
         if(cursor.moveToFirst())
             do {
                 String company = cursor.getString(5);
                 int dismissed = cursor.getInt(4);
                 Integer id = (Integer) cursor.getInt(0);
-                if(counter < 5 && dismissed == 0) {
+                if(openMessages.size() < 5 && dismissed == 0) {
                     openMessages.add(new Voucher(cursor.getInt(0), cursor.getString(5), cursor.getFloat(2), cursor.getString(3), cursor.getString(6), cursor.getString(7), cursor.getString(9), (cursor.getInt(4) == 0)));
-                    counter++;
                 }
             } while(cursor.moveToNext());
 
