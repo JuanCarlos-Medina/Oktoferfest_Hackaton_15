@@ -75,7 +75,7 @@ public class MainActivity extends ActionBarActivity {
         openDB();
         initDB();
         readDB();
-        //resetDB();
+        resetDB();
 
         mShouldStartServices = true;
         showColorPickerDialog();
@@ -125,12 +125,8 @@ public class MainActivity extends ActionBarActivity {
     }
 
     private void initDB(){
-        //myDB.insertRow("TEST", 10.0, "Euro", "Amazon", "18 May", "18 May", 1, "CSJWF", 0);
-        //myDB.insertRow("TEST",10.0,"Euro","Google","18 May","18 May", 1, "CS1W2", 0);
-        //myDB.insertRow("TEST",10.0,"Euro","Yahoo","18 May","18 May", 1, "CS99F", 0);
-        //myDB.insertRow("TEST",10.0,"Euro","Twitter","18 May","18 May", 1, "CSMMF", 0);
-        //myDB.insertRow("TEST",10.0,"Euro","Youtube","18 May","18 May", 1, "5S1WF", 0);
-        //myDB.insertRow("TEST", 10.0, "Euro", "9Gag", "18 May", "18 May", 1, "DSJWF", 0);
+        //myDB.insertRow("TEST", 10.0, "Euro", "Amazon", "18 May", "18 May", 1, "CS4J6WF", 0);
+        //myDB.insertRow("TEST",20.0,"%","Zalando","18 May","18 May", 1, "CS01W2M", 0);
     }
 
     private void resetDB() {
