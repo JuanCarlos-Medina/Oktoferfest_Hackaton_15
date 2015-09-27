@@ -11,6 +11,7 @@
         android:layout_height="match_parent">
 
         <TextView android:text="@string/hello_world" android:layout_width="match_parent"
+            style="@style/CodeFontLarge"
             android:id="@+id/voucher_textView"
             android:layout_height="295dp"
             android:layout_alignRight="@+id/linearlayout_voucher"
@@ -56,6 +57,7 @@
                 android:src="@drawable/barcode" />
 
             <TextView
+                style="@style/CodeFontLarge"
                 android:text="0481k7456L"
                 android:layout_width="wrap_content"
                 android:id="@+id/voucher_textViewCode"
