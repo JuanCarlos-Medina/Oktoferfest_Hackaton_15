@@ -109,6 +109,18 @@ public final class VoucherContract {
         return db.insert(VoucherTableEntry.TABLE_NAME, null, initialValues);
     }
 
+    public int getNumDismissed() {
+        String where = VoucherTableEntry.COLUMN_NAME_VOUCHER_DISMISSED + "=" + 1;
+        Cursor c = 	db.query(true, VoucherTableEntry.TABLE_NAME, ALL_KEYS,
+                where, null, null, null, null, null);
+        if (c != null) {
+            c.moveToFirst();
+        }
+        else
+            return 0;
+        return c.getCount();
+    }
+
     // Delete a row from the database, by rowId (primary key)
     public boolean deleteRow(long rowId) {
         String where = VoucherTableEntry.COLUMN_NAME_VOUCHER_ID + "=" + rowId;
