@@ -48,13 +48,14 @@ public class MessageListAdapter extends ArrayAdapter<Voucher> {
         row.setTag(items.get(position).getId());
 
         holder.voucherInfo = (TextView)row.findViewById(R.id.list_item_openmessages_textview);
+        holder.voucherInfo.setTag(items.get(position).getId());
         holder.voucherInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i("Click", "TextView clicked on " + (String) v.getTag());
+                Log.i("Click", "TextView clicked on " + v.getTag());
                 Intent intent = new Intent((Activity) v.getContext(), VoucherActivity.class);
                 // TODO(Katharina): Get here the number etc.
-                intent.putExtra(EXTRA_MESSAGE, "Test");
+                intent.putExtra(EXTRA_MESSAGE, "" + v.getTag());
                 //intent.putExtra(EXTRA_MESSAGE, (String) v.getTag());
                 v.getContext().startActivity(intent);
             }
