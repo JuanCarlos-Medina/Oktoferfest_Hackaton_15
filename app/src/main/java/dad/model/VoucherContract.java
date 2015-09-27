@@ -156,10 +156,10 @@ public final class VoucherContract {
                 selectionArgs);
     }
 
-    /*// Get a specific row (by rowId)
+    // Get a specific row (by rowId)
     public Cursor getRow(long rowId) {
-        String where = KEY_ROWID + "=" + rowId;
-        Cursor c = 	db.query(true, DATABASE_TABLE, ALL_KEYS,
+        String where = VoucherTableEntry.COLUMN_NAME_VOUCHER_ID + "=" + rowId;
+        Cursor c = 	db.query(true, VoucherTableEntry.TABLE_NAME, ALL_KEYS,
                 where, null, null, null, null, null);
         if (c != null) {
             c.moveToFirst();
@@ -168,7 +168,7 @@ public final class VoucherContract {
     }
 
     // Change an existing row to be equal to new data.
-    public boolean updateRow(long rowId, String name, int studentNum, String favColour) {
+    /*public boolean updateRow(long rowId, String name, int studentNum, String favColour) {
         String where = KEY_ROWID + "=" + rowId;*/
 
 		/*
