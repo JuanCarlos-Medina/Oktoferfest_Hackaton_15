@@ -16,6 +16,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/textView"
         android:layout_weight="1"
+        android:textSize="20sp"
         android:text="Value of each voucher:"
         />
 
@@ -31,6 +32,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/textView2"
         android:layout_weight="1"
+        android:textSize="20sp"
         android:text="Number of vouchers:"
         />
 
@@ -43,8 +45,9 @@
 
     <Button
         android:id="@+id/the_button_voucher"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/mybutton"
         android:text="Release"
         android:onClick="releaseVoucherOnClickListener" />
 </LinearLayout>

@@ -11,6 +11,7 @@
     android:minHeight="?android:attr/listPreferredItemHeight"
     android:gravity="center_vertical"
     android:id="@+id/list_item_openmessages_linearlayout"
+    android:background="@color/color_1"
     android:weightSum="1">
 
     <TextView
@@ -21,6 +22,10 @@
         android:minHeight="?android:attr/listPreferredItemHeight"
         android:gravity="center"
         android:clickable="true"
+        android:divider="#FFCC00"
+        android:dividerHeight="10px"
+        android:textColor="@color/color_text"
+        android:textStyle="bold"
         android:textSize="20sp"
         android:id="@+id/list_item_openmessages_textview"
         android:layout_weight="0.99"/>
@@ -29,6 +34,7 @@
         android:id="@+id/message_sendMessage"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
+        android:background="@drawable/mybutton"
         android:text="Send away"
         android:onClick="sendMessageOnClickHandler" />
 
